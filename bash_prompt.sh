@@ -102,17 +102,24 @@ else
 BRANCH=''
 fi
 
+if [ -n "$VIRTUAL_ENV" ] ; then
+VENV_STRING="(`basename \"$VIRTUAL_ENV\"`) "
+else
+VENV_STRING=""
+fi
+
 # Fill spaces between the left and right halves
 strippedbranch=`echo $BRANCH | sed 's|\\\\\\[[^]]*\\]||g'`
-lefthalf="`whoami`@`hostname -s` `pwd | sed "s|$HOME|~|"` $strippedbranch"
+lefthalf="$VENV_STRING`whoami`@`hostname -s` `pwd | sed "s|$HOME|~|"` $strippedbranch"
 righthalf=`date '+%a %b %d %T'`
 let fillsize=${COLUMNS}-${#lefthalf}-${#righthalf}-1
 fill=`printf ' %.0s' {1..300}` # 300 spaces
 fill=${fill:0:$fillsize}
 
 # Set the bash prompt variable.
-PS1="\n$FGGR\u@$HOSTCOLOR\h$RESET $FGGR\w$RESET ${BRANCH}$fill$FGGR\d \T$RESET\n\
+PS1="\n$FGGR$VENV_STRING\u@$HOSTCOLOR\h$RESET $FGGR\w$RESET ${BRANCH}$fill$FGGR\d \T$RESET\n\
 ${PROMPT_SYMBOL} "
+
 }
 
 # Tell bash to execute this function just before displaying its prompt.
