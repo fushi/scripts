@@ -117,8 +117,8 @@ fill=`printf ' %.0s' {1..300}` # 300 spaces
 fill=${fill:0:$fillsize}
 
 # Set the bash prompt variable.
-PS1="\n$FGGR$VENV_STRING\u@$HOSTCOLOR\h$RESET $FGGR\w$RESET ${BRANCH}$fill$FGGR\d \T$RESET\n\
-${PROMPT_SYMBOL} "
+PS1="\n$FGGR\u@$HOSTCOLOR\h$RESET $FGGR\w$RESET ${BRANCH}$fill$FGGR\d \T$RESET\n\
+$VENV_STRING${PROMPT_SYMBOL} "
 
 }
 
