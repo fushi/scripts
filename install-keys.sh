@@ -16,6 +16,7 @@ URL=https://github.com/$1.keys
 
 TEMP_FILE=`mktemp`
 
+echo `date`
 echo "Gathering keys from $URL"
 
 curl -sf $URL > $TEMP_FILE
